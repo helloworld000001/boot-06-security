@@ -22,6 +22,7 @@
             <div class="right menu">
                 <!--未登录-->
                 <div sec:authorize="!isAuthenticated()">
+                    <!-- 如果用户没有登录，就跳转到/toLogin去登录 -->
                     <a class="item" th:href="@{/toLogin}">
                         <i class="address card icon"></i> 登录
                     </a>
@@ -30,6 +31,7 @@
 
                 <!--注销-->
                 <div sec:authorize="isAuthenticated()">
+                    <!-- 用户登录后，显示用户名和角色 -->
                     <a class="item">
                         用户名:<span sec:authentication="name"></span>
                         角色:<span sec:authentication="principal.authorities"></span>
@@ -59,6 +61,7 @@
     <div>
         <br>
         <div class="ui three column stackable grid" >
+            <!-- 只有roles是hasRole('vip1')就显示 -->
             <div class="column" sec:authorize="hasRole('vip1')">
                 <div class="ui raised segment">
                     <div class="ui">
@@ -73,6 +76,7 @@
                 </div>
             </div>
 
+            <!-- 只有roles是hasRole('vip2')就显示 -->
             <div class="column" sec:authorize="hasRole('vip2')">
                 <div class="ui raised segment">
                     <div class="ui">
@@ -87,6 +91,7 @@
                 </div>
             </div>
 
+            <!-- 只有roles是hasRole('vip3')就显示 -->
             <!--菜单根据角色动态生成-->
             <div class="column" sec:authorize="hasRole('vip3')">
                 <div class="ui raised segment">

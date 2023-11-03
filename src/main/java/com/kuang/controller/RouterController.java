@@ -21,7 +21,7 @@ public class RouterController {
 
     @RequestMapping("/toLogin")
     public String toLogin(){
-        return "view/login";
+        return "views/login";
     }
 
     @RequestMapping("/level1/{id}")

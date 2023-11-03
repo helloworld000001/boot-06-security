@@ -27,6 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 没有权限会默认到登录页中:会自动发送/login请求
         http.formLogin();
+
+        // 关闭csrf功能:防止跨站攻击
+        http.csrf().disable();
+
+        // 注销:开启了注销功能，跳转到首页
+        http.logout().logoutSuccessUrl("/");
     }
 
     // 认证：
