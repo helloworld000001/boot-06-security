@@ -25,14 +25,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/level2/**").hasRole("vip2")
                 .antMatchers("/level3/**").hasRole("vip3");
 
-        // 没有权限会默认到登录页中:会自动发送/login请求
-        http.formLogin();
+        // 没有权限会默认到登录页中:会自动发送/login请求（底层默认页面）
+        // 加上loginPage("/toLogin")则会发送/toLogin请求
+        // loginProcessingUrl("/login")此时前端就可以使用th:href="@{/login}"
+        http.formLogin().loginPage("/toLogin").loginProcessingUrl("/login");
 
         // 关闭csrf功能:防止跨站攻击
         http.csrf().disable();
 
         // 注销:开启了注销功能，跳转到首页
         http.logout().logoutSuccessUrl("/");
+
+        // 开启记住我功能:默认2周.remember是前端使用的参数name
+        http.rememberMe().rememberMeParameter("remember");
     }
 
     // 认证：
